@@ -1,11 +1,15 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const mtgRouter = require('./controllers/mtg')
+import express from 'express';
+import cors from 'cors';
+import mtgRouter from './controllers/mtg.js';
 
-app.use(cors())
-app.use(express.json())
+const app = express();
+app.use(cors());
+app.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
 
-app.use('/api/mtg', mtgRouter)
+app.use('/', mtgRouter);
 
-module.exports = app
+export default app;
